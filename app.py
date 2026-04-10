@@ -34,10 +34,6 @@ def load_data():
             data = StringIO(response.text)
             df = pd.read_csv(data)
 
-        else:
-            st.warning("⚠️ GitHub failed. Loading local file instead...")
-            df = pd.read_csv("sales_data.csv")  # fallback
-
         # --- CLEAN DATA ---
         df["Order_Date"] = pd.to_datetime(df["Order_Date"], errors="coerce")
         df = df.dropna(subset=["Order_Date"])
